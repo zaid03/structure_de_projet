@@ -120,7 +120,7 @@
           <a class="choice">Artículos</a>
           <div class="menu-content" [class.open]="articulos">
             <div class="menu-item">
-              <a class="acAFA" 
+              <a class="acAFA margin" 
                 [class.disabled]="isDisabled('acAFA')"
                 (click)="navigateTo('familia')"
               >Familias y subfamilias</a>
@@ -132,8 +132,7 @@
           <a class="choice">Tipos</a>
           <div class="menu-content" [class.open]="temp">
             <div class="menu-item">
-              <a 
-                class="" 
+              <a class="" 
                 (click)="navigateTo('almacenaje')"
               >Tipos de almacenaje</a>
               <a class="margin" 
@@ -159,6 +158,7 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div> 
 
@@ -211,8 +211,65 @@
               (click)="$event.preventDefault()"
             ><span class="color-text"> Contable</span><br>
           </div>
+          <div class="purple-btn services-fix" (click)="launchAddCentroGestor()">Ver Servicios de la Persona</div>
         </div>
       </div>
     <p class="status">{{centroGestorStatus}}</p>
+  </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="showServices" (click)="closeShowServices()"></div>
+<div class="add-confirm-modal" *ngIf="showServices">
+  <div class="btns">
+    <div class="title">
+      <h3>Servicios asociados del usario</h3>
+    </div>
+    <button class="red-btn" (click)="closeShowServices()">✖</button>
+  </div>
+  <h1 class="errorBtn">{{servicesError}}</h1>
+  <div class="detail-services">
+    <table class="main-table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Centro Gestor</th>
+          <th>Servicio</th>
+          <th>Comp.</th>
+          <th>Alma.</th>
+          <th>Conta.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of paginatedServices">
+          <td>{{p.depcod}}</td>
+          <td>{{p.cgedes}}</td>
+          <td>{{p.depdes}}</td>
+          <td>
+            <input 
+              type="checkbox"
+              [checked]="p.depcom === 1"
+              class="locked-radio"
+              (click)="$event.preventDefault()"
+            >
+          </td>
+          <td>
+            <input 
+              type="checkbox"
+              [checked]="p.depalm === 1"
+              class="locked-radio"
+              (click)="$event.preventDefault()"
+            >
+          </td>
+          <td>
+            <input 
+              type="checkbox"
+              [checked]="p.depint === 1"
+              class="locked-radio"
+              (click)="$event.preventDefault()"
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
