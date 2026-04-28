@@ -183,6 +183,9 @@ export class DashboardComponent implements OnInit {
       case 'CGArticulos':
         this.router.navigate(['/CGArticulos']);
         break;
+      case 'CAlmacen':
+        this.router.navigate(['/CGArticulos']);
+        break;
       default:
         break;
     }
